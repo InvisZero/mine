@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galaxy Fit3 Minecraft Edition | Official Samsung Store</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter for Samsung look, Silkscreen & VT323 for Minecraft look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        pixel: ['Silkscreen', 'cursive'],
+                        vt: ['VT323', 'monospace'],
+                    },
+                    colors: {
+                        creeper: {
+                            light: '#00ff55',
+                            DEFAULT: '#468b32',
+                            dark: '#255218',
+                        },
+                        obsidian: {
+                            light: '#8b5cf6',
+                            DEFAULT: '#2e1065',
+                            dark: '#0f051d',
+                        },
+                        diamond: '#38bdf8',
+                        redstone: '#ef4444',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Pixel & 3D Watch Styling */
+        .pixelated {
+            image-rendering: pixelated;
+        }
+
+        /* Creeper Pixel Strap Pattern via CSS */
+        .strap-creeper {
+            background-color: #468b32;
+            background-image: 
+                linear-gradient(45deg, #356f24 25%, transparent 25%), 
+                linear-gradient(-45deg, #356f24 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, #55a63d 75%), 
+                linear-gradient(-45deg, transparent 75%, #2b581d 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            box-shadow: inset 0 0 18px rgba(0,0,0,0.65);
+        }
+
+        /* Diamond Ore Strap Pattern */
+        .strap-diamond {
+            background-color: #475569;
+            background-image: 
+                radial-gradient(#38bdf8 20%, transparent 20%),
+                radial-gradient(#bae6fd 15%, transparent 15%);
+            background-size: 24px 24px;
+            background-position: 0 0, 12px 12px;
+            box-shadow: inset 0 0 18px rgba(0,0,0,0.75);
+        }
+
+        /* Netherite Matte Black Strap Pattern */
+        .strap-netherite {
+            background-color: #1c1917;
+            background-image: 
+                linear-gradient(90deg, rgba(255,255,255,0.03) 50%, transparent 50%),
+                linear-gradient(rgba(255,255,255,0.03) 50%, transparent 50%);
+            background-size: 16px 16px;
+            box-shadow: inset 0 0 22px rgba(0,0,0,0.9);
+        }
+
+        /* TNT Red Strap Pattern */
+        .strap-tnt {
+            background-color: #dc2626;
+            background-image: repeating-linear-gradient(
+                0deg,
+                #dc2626,
+                #dc2626 18px,
+                #b91c1c 18px,
+                #b91c1c 36px
+            );
+            box-shadow: inset 0 0 18px rgba(0,0,0,0.65);
+        }
+
+        /* Bezel Metallic Finishes */
+        .bezel-creeper {
+            background: linear-gradient(145deg, #2d3748, #1a202c, #468b32);
+            box-shadow: 0 25px 50px -12px rgba(0, 255, 85, 0.25), inset 0 2px 4px rgba(255,255,255,0.3);
+        }
+        .bezel-diamond {
+            background: linear-gradient(145deg, #0284c7, #0f172a, #38bdf8);
+            box-shadow: 0 25px 50px -12px rgba(56, 189, 248, 0.35), inset 0 2px 4px rgba(255,255,255,0.4);
+        }
+        .bezel-netherite {
+            background: linear-gradient(145deg, #27272a, #09090b, #3f3f46);
+            box-shadow: 0 25px 50px -12px rgba(168, 85, 247, 0.25), inset 0 2px 4px rgba(255,255,255,0.2);
+        }
+        .bezel-tnt {
+            background: linear-gradient(145deg, #ef4444, #450a0a, #f97316);
+            box-shadow: 0 25px 50px -12px rgba(239, 68, 68, 0.35), inset 0 2px 4px rgba(255,255,255,0.3);
+        }
+
+        /* Screen Shake Animation for Explosion Prank */
+        @keyframes explosionShake {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            10% { transform: translate(-12px, -10px) rotate(-2deg); }
+            20% { transform: translate(12px, 8px) rotate(2deg); }
+            30% { transform: translate(-10px, 12px) rotate(-1.5deg); }
+            40% { transform: translate(10px, -8px) rotate(1.5deg); }
+            50% { transform: translate(-8px, 6px) rotate(-1deg); }
+            60% { transform: translate(8px, 4px) rotate(1deg); }
+            70% { transform: translate(-6px, -6px) rotate(-0.5deg); }
+            80% { transform: translate(6px, 4px) rotate(0.5deg); }
+            90% { transform: translate(-3px, -2px) rotate(0deg); }
+        }
+        .shake-active {
+            animation: explosionShake 0.65s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        /* Floating Watch Levitation */
+        @keyframes floatWatch {
+            0%, 100% { transform: translateY(0px) rotateX(4deg) rotateY(-6deg); }
+            50% { transform: translateY(-10px) rotateX(2deg) rotateY(4deg); }
+        }
+        .watch-float {
+            animation: floatWatch 5s ease-in-out infinite;
+            transform-style: preserve-3d;
+        }
+
+        /* Minecraft-style blocky button border */
+        .mc-border {
+            box-shadow: inset -2px -4px 0px rgba(0,0,0,0.4), inset 2px 2px 0px rgba(255,255,255,0.25);
+        }
+
+        /* Enchanted Glint Effect */
+        @keyframes glint {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .enchanted-glint {
+            background: linear-gradient(110deg, rgba(139,92,246,0) 35%, rgba(168,85,247,0.35) 50%, rgba(139,92,246,0) 65%);
+            background-size: 200% 100%;
+            animation: glint 3.5s infinite linear;
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-white font-sans antialiased overflow-x-hidden selection:bg-creeper-light selection:text-black">
+
+    <!-- VIP Personalized Prank Banner (Hidden until name is set or active by default with generic VIP message) -->
+    <div id="vipBanner" class="bg-gradient-to-r from-obsidian-DEFAULT via-purple-900 to-obsidian-DEFAULT border-b border-purple-500/40 text-xs sm:text-sm py-2 px-4 text-center relative overflow-hidden">
+        <div class="enchanted-glint absolute inset-0 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto flex items-center justify-center gap-2 relative z-10">
+            <span class="inline-block w-2 h-2 rounded-full bg-creeper-light animate-ping"></span>
+            <span class="font-pixel text-[11px] sm:text-xs text-purple-200 tracking-wider">MINECRAFT LIVE x GALAXY UNPACKED DROP:</span>
+            <span id="vipBannerText" class="font-semibold text-white">Early Access Invite Reserved for <span class="text-creeper-light underline decoration-dotted">Player_One</span></span>
+            <span class="hidden md:inline-block bg-black/50 text-amber-300 font-vt text-base px-2 py-0.5 rounded border border-amber-400/30 ml-2">Stock: Only 4 Units Left in Seed #2026</span>
+        </div>
+    </div>
+
+    <!-- Official Samsung Style Sticky Navbar -->
+    <header class="sticky top-0 z-40 bg-black/85 backdrop-blur-md border-b border-zinc-800/80 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Left: Brand + Main Links -->
+                <div class="flex items-center gap-8">
+                    <a href="#" class="text-xl sm:text-2xl font-black tracking-[0.22em] text-white hover:opacity-80 transition">
+                        SAMSUNG
+                    </a>
+                    <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-zinc-300">
+                        <a href="#overview" class="hover:text-white transition">Mobile</a>
+                        <a href="#watch-studio" class="hover:text-white transition">Wearables</a>
+                        <a href="#features" class="text-creeper-light font-semibold flex items-center gap-1.5">
+                            <span>Galaxy Fit3 Minecraft Edition</span>
+                            <span class="bg-creeper-DEFAULT text-white font-pixel text-[9px] px-1.5 py-0.5 rounded">NEW</span>
+                        </a>
+                        <a href="#specs" class="hover:text-white transition">Specs</a>
+                    </nav>
+                </div>
+
+                <!-- Right: Sound Toggle & Pre-Order CTA -->
+                <div class="flex items-center gap-3">
+                    <button id="audioToggleBtn" onclick="toggleSoundMute()" title="Toggle 8-Bit Sound Effects" class="p-2.5 rounded-full bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-700 text-xs flex items-center gap-1.5 transition">
+                        <i id="audioIcon" class="fa-solid fa-volume-high text-creeper-light"></i>
+                        <span class="hidden sm:inline font-vt text-sm">SFX ON</span>
+                    </button>
+                    <button onclick="openCheckoutModal()" class="bg-creeper-light hover:bg-green-400 text-black font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full transition transform active:scale-95 shadow-[0_0_20px_rgba(0,255,85,0.4)] flex items-center gap-2">
+                        <span>Buy Now</span>
+                        <span class="font-pixel text-[10px] bg-black/20 px-1.5 py-0.5 rounded">₹4,999</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Sub-navigation product bar -->
+        <div class="bg-zinc-900/90 border-t border-zinc-800/70 py-2 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 text-xs">
+                <div class="flex items-center gap-2">
+                    <span class="font-bold text-white">Galaxy Fit3</span>
+                    <span class="text-zinc-500">|</span>
+                    <span class="font-pixel text-[10px] text-creeper-light">MOJANG STUDIOS LIMITED EDITION</span>
+                </div>
+                <div class="flex items-center gap-4 text-zinc-400">
+                    <a href="#watch-studio" class="hover:text-white">Interactive Studio</a>
+                    <a href="#features" class="hover:text-white">BioActive Redstone</a>
+                    <a href="#cosmetic" class="hover:text-white hidden sm:inline">Bedrock Cosmetic</a>
+                    <button onclick="openCheckoutModal()" class="text-creeper-light hover:underline font-medium">Claim Free Promo Unit &rarr;</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Hero Showcase & Interactive Watch Studio -->
+    <section id="overview" class="relative pt-8 pb-20 md:py-20 overflow-hidden bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900 via-zinc-950 to-black">
+        <!-- Decorative Pixel Grid Background -->
+        <div class="absolute inset-0 opacity-15 pointer-events-none" style="background-image: radial-gradient(#468b32 1px, transparent 1px); background-size: 24px 24px;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Column: Samsung Marketing Copy + Edition Controls -->
+                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900 border border-creeper-DEFAULT/50 text-creeper-light text-xs font-pixel">
+                        <span class="w-2 h-2 bg-creeper-light animate-pulse"></span>
+                        SAMSUNG x MINECRAFT 15TH ANNIVERSARY DROP
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl xl:text-6xl font-black tracking-tight leading-none">
+                        Level Up Your <br/>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-creeper-light via-emerald-400 to-diamond">Survival Fitness.</span>
+                    </h1>
+
+                    <p class="text-zinc-400 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        Meet the <strong class="text-white">Galaxy Fit3 Minecraft Edition</strong>. Forged with an anodized Diamond-Ore aluminum body, BioActive Redstone heart sensor, and a 13-day Overworld battery life.
+                    </p>
+
+                    <!-- Interactive Watch Face Switcher -->
+                    <div id="watch-studio" class="bg-zinc-900/90 border border-zinc-800 rounded-2xl p-5 space-y-4 shadow-xl backdrop-blur">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs uppercase tracking-wider text-zinc-400 font-semibold flex items-center gap-2">
+                                <i class="fa-solid fa-wand-magic-sparkles text-creeper-light"></i>
+                                1. Try Live Interactive Watch Faces
+                            </span>
+                            <span class="font-vt text-sm text-amber-400">Tap Watch Screen to Interact!</span>
+                        </div>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                            <button onclick="switchWatchFace(0)" id="faceBtn-0" class="face-btn active-face p-2.5 rounded-xl border border-creeper-light bg-creeper-DEFAULT/20 text-left transition hover:bg-zinc-800">
+                                <div class="font-pixel text-[10px] text-creeper-light truncate">01. CREEPER</div>
+                                <div class="text-xs font-semibold text-white mt-0.5">Radar & XP</div>
+                            </button>
+                            <button onclick="switchWatchFace(1)" id="faceBtn-1" class="face-btn p-2.5 rounded-xl border border-zinc-700 bg-zinc-800/50 text-left transition hover:bg-zinc-800">
+                                <div class="font-pixel text-[10px] text-red-400 truncate">02. REDSTONE</div>
+                                <div class="text-xs font-semibold text-white mt-0.5">Pulse Circuit</div>
+                            </button>
+                            <button onclick="switchWatchFace(2)" id="faceBtn-2" class="face-btn p-2.5 rounded-xl border border-zinc-700 bg-zinc-800/50 text-left transition hover:bg-zinc-800">
+                                <div class="font-pixel text-[10px] text-amber-300 truncate">03. DAYLIGHT</div>
+                                <div class="text-xs font-semibold text-white mt-0.5">Sun/Moon Cycle</div>
+                            </button>
+                            <button onclick="switchWatchFace(3)" id="faceBtn-3" class="face-btn p-2.5 rounded-xl border border-zinc-700 bg-zinc-800/50 text-left transition hover:bg-zinc-800">
+                                <div class="font-pixel text-[10px] text-sky-400 truncate">04. PICKAXE</div>
+                                <div class="text-xs font-semibold text-white mt-0.5">Step Miner</div>
+                            </button>
+                        </div>
+
+                        <!-- Color / Edition Selector -->
+                        <div class="pt-3 border-t border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div>
+                                <span class="text-xs uppercase tracking-wider text-zinc-400 font-semibold block">2. Select Craftable Strap Edition:</span>
+                                <span id="selectedColorName" class="text-sm font-bold text-creeper-light">Creeper Green (Overworld Edition)</span>
+                            </div>
+                            <div class="flex items-center justify-center lg:justify-start gap-3">
+                                <button onclick="selectEdition('creeper', 'Creeper Green (Overworld Edition)')" id="swatch-creeper" class="w-9 h-9 rounded-full bg-[#468b32] border-2 border-white ring-2 ring-creeper-light transition transform hover:scale-110" title="Creeper Green"></button>
+                                <button onclick="selectEdition('diamond', 'Diamond Ore Blue (Y-Level -58)')" id="swatch-diamond" class="w-9 h-9 rounded-full bg-[#38bdf8] border-2 border-zinc-700 transition transform hover:scale-110" title="Diamond Ore Blue"></button>
+                                <button onclick="selectEdition('netherite', 'Netherite Matte Black (Ancient Debris)')" id="swatch-netherite" class="w-9 h-9 rounded-full bg-[#27272a] border-2 border-zinc-700 transition transform hover:scale-110" title="Netherite Matte Black"></button>
+                                <button onclick="selectEdition('tnt', 'TNT Red (Explosive HIIT Edition)')" id="swatch-tnt" class="w-9 h-9 rounded-full bg-[#ef4444] border-2 border-zinc-700 transition transform hover:scale-110" title="TNT Red"></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Price & Pre-Order CTAs -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <button onclick="openCheckoutModal()" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white hover:bg-creeper-light text-black font-extrabold text-base tracking-wide transition transform hover:-translate-y-0.5 shadow-[0_10px_30px_rgba(255,255,255,0.2)] flex items-center justify-center gap-3">
+                            <span>Pre-Order / Claim Edition</span>
+                            <span class="text-xs font-pixel bg-black text-creeper-light px-2 py-1 rounded">₹4,999 / $69.99</span>
+                        </button>
+                        <button onclick="simulateStepBoost()" class="w-full sm:w-auto px-5 py-4 rounded-full bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-700 font-semibold text-sm transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-person-running text-creeper-light"></i>
+                            <span>Simulate +250 Steps / Mine</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column: 3D-Styled Interactive Watch Centerpiece -->
+                <div class="lg:col-span-6 flex flex-col items-center justify-center relative">
+                    <!-- Ambient Glow Behind Watch -->
+                    <div id="watchGlow" class="absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-creeper-light/20 blur-3xl pointer-events-none transition-colors duration-500"></div>
+
+                    <!-- Floating Interactive Hints -->
+                    <div class="mb-4 flex items-center gap-2 bg-zinc-900/90 border border-zinc-700 px-3.5 py-1.5 rounded-full text-xs text-zinc-300 shadow-lg z-20">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span>Live 1.6" AMOLED Pixel Display — <strong>Click watch screen</strong> to test!</span>
+                    </div>
+
+                    <!-- Watch Hardware Assembly -->
+                    <div class="watch-float relative flex flex-col items-center select-none z-10">
+                        
+                        <!-- Top Band (Pixel Textured) -->
+                        <div id="topStrap" class="w-28 sm:w-32 h-24 sm:h-28 strap-creeper rounded-t-3xl border-x-4 border-t-4 border-zinc-800/80 relative flex flex-col items-center justify-evenly py-2 transition-all duration-300">
+                            <div class="w-16 h-1.5 bg-black/40 rounded-full"></div>
+                            <div class="w-5 h-2.5 bg-black/60 rounded-sm border border-white/10"></div>
+                            <div class="w-5 h-2.5 bg-black/60 rounded-sm border border-white/10"></div>
+                            <!-- Pixel Engraved Mojang/Galaxy Tag -->
+                            <span class="font-pixel text-[8px] text-white/60 tracking-widest">FIT3 x MC</span>
+                        </div>
+
+                        <!-- Watch Aluminum Bezel & Interactive HTML5 Canvas Screen -->
+                        <div id="watchBezel" class="bezel-creeper p-3.5 sm:p-4 rounded-[2.6rem] border-2 border-white/20 relative transition-all duration-300">
+                            
+                            <!-- Side Physical Crown / Home Button (Clickable!) -->
+                            <button onclick="cycleNextWatchFace()" title="Press Side Button to Switch Watch Face" class="absolute -right-3 top-16 w-3 h-12 bg-gradient-to-b from-zinc-400 via-zinc-600 to-zinc-800 rounded-r-md border-y border-r border-white/30 shadow-md hover:brightness-125 active:translate-x-[-2px] transition"></button>
+                            <!-- Redstone Sensor Cutout Indicator on Side -->
+                            <div class="absolute -right-2.5 top-32 w-2.5 h-6 bg-red-600/80 rounded-r-sm border border-red-300/40 animate-pulse" title="BioActive Redstone Sensor"></div>
+
+                            <!-- Inner OLED Bezel Frame -->
+                            <div class="bg-black p-2 rounded-[2.1rem] shadow-inner border border-zinc-800 relative overflow-hidden">
+                                <!-- Live Interactive HTML5 Canvas (220 x 340 logical aspect ratio matching Galaxy Fit3 1.6" rectangle) -->
+                                <canvas id="watchCanvas" width="230" height="350" class="rounded-[1.6rem] cursor-pointer block bg-zinc-950"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Band (Pixel Textured) -->
+                        <div id="bottomStrap" class="w-28 sm:w-32 h-24 sm:h-28 strap-creeper rounded-b-3xl border-x-4 border-b-4 border-zinc-800/80 relative flex flex-col items-center justify-evenly py-2 transition-all duration-300">
+                            <div class="w-5 h-2.5 bg-black/60 rounded-sm border border-white/10"></div>
+                            <div class="w-5 h-2.5 bg-black/60 rounded-sm border border-white/10"></div>
+                            <div class="w-5 h-2.5 bg-black/60 rounded-sm border border-white/10"></div>
+                            <div class="w-20 h-4 bg-zinc-800 rounded-sm border border-white/20 shadow-md flex items-center justify-center">
+                                <span class="font-pixel text-[7px] text-creeper-light">SAMSUNG</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Watch Quick Telemetry Bar under watch -->
+                    <div class="mt-6 grid grid-cols-3 gap-3 w-full max-w-md bg-zinc-900/80 border border-zinc-800 rounded-2xl p-3 text-center backdrop-blur">
+                        <div>
+                            <div class="text-[10px] font-pixel text-zinc-400">HEART RATE</div>
+                            <div class="text-sm sm:text-base font-bold text-red-400 flex items-center justify-center gap-1 mt-0.5">
+                                <i class="fa-solid fa-heart animate-pulse"></i>
+                                <span id="liveBpmText">112 BPM</span>
+                            </div>
+                        </div>
+                        <div class="border-x border-zinc-800">
+                            <div class="text-[10px] font-pixel text-zinc-400">XP LEVEL / STEPS</div>
+                            <div class="text-sm sm:text-base font-bold text-creeper-light mt-0.5" id="liveStepsText">LVL 28 (8,420)</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-pixel text-zinc-400">CALORIES</div>
+                            <div class="text-sm sm:text-base font-bold text-amber-400 mt-0.5" id="liveGoldenApples">14 Golden Apples</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Hilarious & Convincing "Official" Features Section -->
+    <section id="features" class="py-20 bg-white text-zinc-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header in authentic Samsung style -->
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="font-pixel text-xs uppercase tracking-widest px-3 py-1 bg-zinc-900 text-creeper-light rounded-full">OVERWORLD ENGINEERED</span>
+                <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-black">
+                    Crafted for Hardcore Mode.
+                </h2>
+                <p class="text-zinc-600 text-base sm:text-lg">
+                    Every Galaxy Fit3 Minecraft Edition combines flagship Samsung Health sensors with Mojang-certified survival mechanics.
+                </p>
+            </div>
+
+            <!-- Bento Grid of Official Features -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Feature 1: Creeper-Proof 5ATM & Lava Resistance -->
+                <div class="bg-zinc-100 rounded-3xl p-8 border border-zinc-200 flex flex-col justify-between hover:shadow-xl transition group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-creeper-DEFAULT text-white flex items-center justify-center text-2xl mb-6 shadow-md group-hover:scale-105 transition">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <span class="font-pixel text-[10px] text-creeper-dark uppercase">Blast Protection IV</span>
+                        <h3 class="text-2xl font-extrabold text-black mt-1 mb-3">
+                            Creeper-Proof 5ATM & Lava Resistance*
+                        </h3>
+                        <p class="text-zinc-600 text-sm leading-relaxed">
+                            Built with Gorilla Glass Diamond-Ore and IP68 certification. Swim in Ocean Monuments up to 50m deep or survive unexpected backyard Creeper detonations without dropping a single pixel.
+                        </p>
+                    </div>
+                    <p class="text-[11px] text-zinc-500 font-mono mt-6 pt-4 border-t border-zinc-300">
+                        *Lava resistance valid in Overworld only, void in the Nether. Fire Resistance potion sold separately.
+                    </p>
+                </div>
+
+                <!-- Feature 2: XP Step Tracking -->
+                <div class="bg-zinc-950 text-white rounded-3xl p-8 border border-zinc-800 flex flex-col justify-between hover:shadow-xl transition group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-creeper-light text-black flex items-center justify-center text-2xl mb-6 shadow-[0_0_20px_rgba(0,255,85,0.4)] group-hover:scale-105 transition">
+                            <i class="fa-solid fa-cubes"></i>
+                        </div>
+                        <span class="font-pixel text-[10px] text-creeper-light uppercase">Samsung Health x XP Bar</span>
+                        <h3 class="text-2xl font-extrabold mt-1 mb-3">
+                            XP Step Tracking & Golden Apple Calories
+                        </h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed">
+                            Convert 10,000 daily steps into real <strong class="text-creeper-light">Enchantment Levels</strong> right on your wrist. Track burned calories measured in Golden Apples, Cooked Porkchops, and Suspicious Stew.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-zinc-800 flex items-center justify-between text-xs font-pixel text-creeper-light">
+                        <span>10,000 STEPS = LVL 30</span>
+                        <span>+XP DING SFX</span>
+                    </div>
+                </div>
+
+                <!-- Feature 3: Phantom Sleep Coaching -->
+                <div class="bg-gradient-to-br from-obsidian-DEFAULT to-zinc-950 text-white rounded-3xl p-8 border border-purple-500/30 flex flex-col justify-between hover:shadow-xl transition group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-purple-600 text-white flex items-center justify-center text-2xl mb-6 shadow-[0_0_20px_rgba(168,85,247,0.5)] group-hover:scale-105 transition">
+                            <i class="fa-solid fa-moon"></i>
+                        </div>
+                        <span class="font-pixel text-[10px] text-purple-300 uppercase">Insomnia Protection</span>
+                        <h3 class="text-2xl font-extrabold mt-1 mb-3">
+                            Phantom Sleep Coaching
+                        </h3>
+                        <p class="text-purple-100/80 text-sm leading-relaxed">
+                            Monitors REM, Light, and Deep sleep stages while detecting villagers snoring nearby. Automatically alerts you with an urgent haptic screech when you haven't slept for 3 consecutive days so <strong class="text-white">Phantoms don't spawn</strong> above your bed.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-purple-500/30 flex items-center justify-between text-xs font-vt text-purple-200">
+                        <span>STATUS: NO MONSTERS NEARBY</span>
+                        <span class="bg-purple-500/30 px-2 py-0.5 rounded">BED READY</span>
+                    </div>
+                </div>
+
+                <!-- Feature 4: Redstone Heart Rate Sensor -->
+                <div class="bg-zinc-100 rounded-3xl p-8 border border-zinc-200 flex flex-col justify-between hover:shadow-xl transition group lg:col-span-1">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-red-600 text-white flex items-center justify-center text-2xl mb-6 shadow-md group-hover:scale-105 transition">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+                        <span class="font-pixel text-[10px] text-red-600 uppercase">15-Tick Precision</span>
+                        <h3 class="text-2xl font-extrabold text-black mt-1 mb-3">
+                            Redstone Heart Rate Sensor
+                        </h3>
+                        <p class="text-zinc-600 text-sm leading-relaxed">
+                            Powered by <strong class="text-black">Samsung BioActive Redstone Dust</strong>. Continuously measures heart rate, blood oxygen, and acute stress spikes when hearing a cave sound at Y-level -54.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-zinc-300 flex items-center gap-2 text-xs font-semibold text-red-600">
+                        <span class="w-2.5 h-2.5 rounded-full bg-red-600 animate-ping"></span>
+                        <span>Redstone Repeater Signal Strength: 15/15</span>
+                    </div>
+                </div>
+
+                <!-- Feature 5: Exclusive In-Game Character Creator Item (Wide Card) -->
+                <div id="cosmetic" class="bg-gradient-to-r from-zinc-900 via-zinc-950 to-obsidian-dark text-white rounded-3xl p-8 border border-amber-400/40 flex flex-col md:flex-row items-center gap-8 lg:col-span-2 relative overflow-hidden">
+                    <div class="enchanted-glint absolute inset-0 pointer-events-none"></div>
+                    <div class="space-y-4 flex-1 relative z-10">
+                        <div class="inline-flex items-center gap-2 bg-amber-400/20 border border-amber-400/40 text-amber-300 font-pixel text-[10px] px-3 py-1 rounded-full">
+                            <i class="fa-solid fa-gift"></i> IN-BOX DIGITAL LOOT DROP
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-black">
+                            Exclusive In-Game Character Creator Item
+                        </h3>
+                        <p class="text-zinc-300 text-sm sm:text-base leading-relaxed">
+                            Every box includes an enchanted scratch card with a redeemable code for a <strong class="text-amber-300">Golden Galaxy Fit3 Wrist Cosmetic</strong> in Minecraft Bedrock Edition + 1,720 Minecoins.
+                        </p>
+                        <div class="pt-2 flex flex-wrap items-center gap-3">
+                            <button onclick="openCheckoutModal()" class="bg-amber-400 hover:bg-amber-300 text-black font-bold text-xs sm:text-sm px-5 py-2.5 rounded-full transition">
+                                Claim Box + Bedrock Code &rarr;
+                            </button>
+                            <span class="text-xs text-zinc-400 font-vt text-base">Works on Mobile, Console & PC Bedrock</span>
+                        </div>
+                    </div>
+
+                    <!-- Voxel Golden Watch Badge Illustration -->
+                    <div class="w-40 h-40 rounded-2xl bg-zinc-900/90 border-2 border-amber-400/60 flex flex-col items-center justify-center p-4 text-center shadow-[0_0_30px_rgba(251,191,36,0.25)] relative z-10 shrink-0">
+                        <!-- Inline Pixel SVG of Golden Watch Cosmetic -->
+                        <svg viewBox="0 0 16 16" class="w-20 h-20 pixelated mb-2">
+                            <rect x="6" y="1" width="4" height="3" fill="#d97706"/>
+                            <rect x="5" y="4" width="6" height="8" fill="#fbbf24"/>
+                            <rect x="6" y="5" width="4" height="6" fill="#09090b"/>
+                            <rect x="7" y="6" width="2" height="2" fill="#00ff55"/>
+                            <rect x="7" y="9" width="2" height="1" fill="#38bdf8"/>
+                            <rect x="6" y="12" width="4" height="3" fill="#d97706"/>
+                        </svg>
+                        <span class="font-pixel text-[9px] text-amber-300">GOLDEN FIT3</span>
+                        <span class="text-[10px] text-zinc-400">Rarity: Mythic</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specifications Table -->
+    <section id="specs" class="py-16 bg-zinc-950 border-t border-zinc-900">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 border-b border-zinc-800 pb-6">
+                <div>
+                    <span class="font-pixel text-xs text-creeper-light">TECHNICAL BLUEPRINT</span>
+                    <h2 class="text-3xl font-black text-white mt-1">Official Specifications</h2>
+                </div>
+                <span class="text-xs text-zinc-500 mt-2 sm:mt-0">Model: SM-R390-MC2026</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-sm">
+                <div class="bg-zinc-900/60 p-5 rounded-2xl border border-zinc-800">
+                    <div class="text-zinc-400 text-xs uppercase font-semibold">Display</div>
+                    <div class="text-white font-bold text-base mt-1">1.6" AMOLED (Chunk-Loaded)</div>
+                    <div class="text-zinc-500 text-xs mt-1">256 x 402 pixels, 60 FPS Voxel Refresh</div>
+                </div>
+                <div class="bg-zinc-900/60 p-5 rounded-2xl border border-zinc-800">
+                    <div class="text-zinc-400 text-xs uppercase font-semibold">Battery Life</div>
+                    <div class="text-white font-bold text-base mt-1">Up to 13 Overworld Days</div>
+                    <div class="text-zinc-500 text-xs mt-1">Or 936 Minecraft Day/Night Cycles</div>
+                </div>
+                <div class="bg-zinc-900/60 p-5 rounded-2xl border border-zinc-800">
+                    <div class="text-zinc-400 text-xs uppercase font-semibold">Sensors</div>
+                    <div class="text-white font-bold text-base mt-1">BioActive Redstone Dust</div>
+                    <div class="text-zinc-500 text-xs mt-1">Accelerometer, Creeper Proximity Radar, Barometer</div>
+                </div>
+                <div class="bg-zinc-900/60 p-5 rounded-2xl border border-zinc-800">
+                    <div class="text-zinc-400 text-xs uppercase font-semibold">Durability</div>
+                    <div class="text-white font-bold text-base mt-1">5ATM + IP68 + Unbreaking III</div>
+                    <div class="text-zinc-500 text-xs mt-1">Sandblasted Diamond-Ore Aluminum</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer with Subtle Prankster Control Gear Icon -->
+    <footer class="bg-black border-t border-zinc-900 text-zinc-500 text-xs py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div>
+                    <div class="text-white font-black tracking-[0.2em] text-base">SAMSUNG x MOJANG</div>
+                    <p class="mt-1 text-zinc-500">Copyright © 1995-2026 Samsung Electronics Co., Ltd. Minecraft is a trademark of Mojang Synergies AB.</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button onclick="togglePrankSettings()" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white border border-zinc-800 transition" title="Prank Mode Settings (For Prankster)">
+                        <i class="fa-solid fa-gear text-creeper-light"></i>
+                        <span>Prank Mode Settings</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Collapsible Prankster Control Panel -->
+            <div id="prankSettingsPanel" class="hidden bg-zinc-900 border border-creeper-DEFAULT/50 rounded-2xl p-5 text-zinc-200 space-y-4">
+                <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-user-secret text-creeper-light text-base"></i>
+                        <span class="font-bold text-sm text-white">Prankster Secret Control Panel</span>
+                    </div>
+                    <button onclick="togglePrankSettings()" class="text-zinc-400 hover:text-white">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+                    <div>
+                        <label class="block text-xs text-zinc-400 mb-1">Victim's Name / Gamertag (Updates Top VIP Banner & Checkout):</label>
+                        <input id="victimNameInput" type="text" placeholder="e.g. Rahul / DiamondKing99" value="Player_One" class="w-full px-3 py-2 rounded-lg bg-black border border-zinc-700 text-white text-sm focus:outline-none focus:border-creeper-light">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-zinc-400 mb-1">Custom Promo Price Display:</label>
+                        <select id="promoPriceSelect" onchange="applyPrankSettings()" class="w-full px-3 py-2 rounded-lg bg-black border border-zinc-700 text-white text-sm focus:outline-none focus:border-creeper-light">
+                            <option value="₹4,999 / $69.99">₹4,999 / $69.99 (Standard Retail)</option>
+                            <option value="FREE (100% Creator Invite)">FREE (100% Creator VIP Invite)</option>
+                            <option value="64 Emeralds (₹999)">64 Emeralds (₹999 Flash Drop)</option>
+                        </select>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="applyPrankSettings()" class="flex-1 bg-creeper-DEFAULT hover:bg-creeper-light hover:text-black text-white font-bold py-2 px-4 rounded-lg transition text-xs">
+                            Apply Victim Name
+                        </button>
+                        <button onclick="triggerImmediatePrank()" class="bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded-lg transition text-xs">
+                            Trigger Boom Now!
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- OFFICIAL CHECKOUT / PRE-ORDER & PRANK REVEAL MODAL -->
+    <div id="checkoutModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div id="modalCard" class="bg-zinc-900 border border-zinc-700 rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative transition-all">
+            
+            <!-- Particle Explosion Canvas Overlay (For TNT/Pixel Confetti during prank reveal) -->
+            <canvas id="confettiCanvas" class="absolute inset-0 w-full h-full pointer-events-none z-30 hidden"></canvas>
+
+            <!-- Top Modal Bar -->
+            <div class="flex items-center justify-between px-6 py-4 bg-zinc-950 border-b border-zinc-800">
+                <div class="flex items-center gap-2">
+                    <span class="font-black tracking-widest text-sm text-white">SAMSUNG</span>
+                    <span class="text-zinc-600">|</span>
+                    <span class="font-pixel text-[10px] text-creeper-light">DIRECT RESERVATION</span>
+                </div>
+                <button onclick="closeCheckoutModal()" class="text-zinc-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- STEP 1: Official-Looking Reservation Form -->
+            <div id="checkoutStepForm" class="p-6 sm:p-8 space-y-5">
+                <div class="flex items-center gap-4 bg-zinc-950 p-4 rounded-2xl border border-zinc-800">
+                    <div id="modalMiniSwatch" class="w-14 h-14 rounded-2xl strap-creeper border-2 border-creeper-light shrink-0 flex items-center justify-center font-pixel text-[9px] text-white shadow">
+                        FIT3
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="text-xs font-pixel text-creeper-light">IN STOCK • READY TO TELEPORT</div>
+                        <h4 class="font-bold text-white text-base truncate">Galaxy Fit3 Minecraft Edition</h4>
+                        <p id="modalEditionLabel" class="text-xs text-zinc-400">Creeper Green + Golden Fit3 Bedrock Code</p>
+                    </div>
+                    <div class="text-right">
+                        <div id="modalPriceTag" class="font-extrabold text-white text-sm">₹4,999</div>
+                        <div class="text-[10px] text-emerald-400">Free Shipping</div>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-zinc-300 uppercase mb-1">Full Name or Minecraft Gamertag</label>
+                        <input id="checkoutUserInput" type="text" value="Player_One" placeholder="Enter your name or gamertag" class="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700 text-white text-sm focus:outline-none focus:border-creeper-light">
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-zinc-300 uppercase mb-1">Delivery Dimension</label>
+                            <select class="w-full px-3 py-3 rounded-xl bg-zinc-950 border border-zinc-700 text-white text-sm focus:outline-none focus:border-creeper-light">
+                                <option>Overworld (Standard Express)</option>
+                                <option>The Nether (8x Faster Travel)</option>
+                                <option>End City Portal Drop</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-zinc-300 uppercase mb-1">Bedrock Cosmetic Platform</label>
+                            <select class="w-full px-3 py-3 rounded-xl bg-zinc-950 border border-zinc-700 text-white text-sm focus:outline-none focus:border-creeper-light">
+                                <option>Android / iOS / PC Bedrock</option>
+                                <option>PlayStation / Xbox / Switch</option>
+                                <option>Java Edition Cape Bundle</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Creeper Countdown Fuse Bar (Hidden until button is clicked) -->
+                <div id="creeperFuseBox" class="hidden bg-red-950/60 border border-red-500 rounded-xl p-3 text-center space-y-2">
+                    <div class="font-pixel text-xs text-red-300 animate-pulse" id="fuseStatusText">
+                        TSSSSSS... VERIFYING BIOACTIVE REDSTONE INVENTORY...
+                    </div>
+                    <div class="w-full bg-black h-2.5 rounded-full overflow-hidden">
+                        <div id="fuseProgressBar" class="bg-gradient-to-r from-creeper-light via-yellow-400 to-red-600 h-full w-0 transition-all duration-100"></div>
+                    </div>
+                </div>
+
+                <button id="completeOrderBtn" onclick="startCreeperPrankSequence()" class="w-full py-4 rounded-xl bg-creeper-light hover:bg-green-400 text-black font-black text-sm sm:text-base tracking-wide transition shadow-[0_0_25px_rgba(0,255,85,0.4)] flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>Complete Order & Claim Bedrock Code</span>
+                </button>
+
+                <p class="text-[11px] text-center text-zinc-500">
+                    Protected by Samsung Knox & Iron Golem Security. No real payment required for VIP reservation.
+                </p>
+            </div>
+
+            <!-- STEP 2: EPIC PRANK REVEAL SCREEN -->
+            <div id="checkoutStepPrank" class="hidden p-6 sm:p-8 text-center space-y-5 relative z-20">
+                <!-- Flashing Creeper Face SVG -->
+                <div class="w-20 h-20 mx-auto rounded-2xl bg-creeper-DEFAULT border-4 border-creeper-light flex items-center justify-center shadow-[0_0_35px_rgba(0,255,85,0.7)] animate-bounce">
+                    <svg viewBox="0 0 8 8" class="w-14 h-14 pixelated">
+                        <rect width="8" height="8" fill="#468b32"/>
+                        <rect x="1" y="2" width="2" height="2" fill="#000"/>
+                        <rect x="5" y="2" width="2" height="2" fill="#000"/>
+                        <rect x="3" y="4" width="2" height="3" fill="#000"/>
+                        <rect x="2" y="5" width="1" height="2" fill="#000"/>
+                        <rect x="5" y="5" width="1" height="2" fill="#000"/>
+                    </svg>
+                </div>
+
+                <div class="space-y-2">
+                    <span class="font-pixel text-xs px-3 py-1 rounded bg-red-600 text-white uppercase tracking-widest">
+                        BOOM! CRITICAL HIT!
+                    </span>
+                    <h3 class="text-2xl sm:text-3xl font-black text-white pt-1">
+                        YOU JUST GOT PRANKED!
+                    </h3>
+                    <p class="text-xs sm:text-sm font-pixel text-creeper-light">
+                        (No Creepers were harmed in the making of this fake drop)
+                    </p>
+                </div>
+
+                <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-4 text-left space-y-2 text-xs sm:text-sm text-zinc-300">
+                    <p>
+                        Sorry <strong id="prankedVictimName" class="text-white">Player_One</strong>! The <span class="text-creeper-light font-semibold">Samsung Galaxy Fit3 Minecraft Edition</span> only exists in our imagination (and maybe a Villager's fever dream).
+                    </p>
+                    <p class="text-xs text-zinc-400">
+                        Send this page to another Minecraft friend or toggle fake "Order Confirmed" mode below to take a screenshot and convince your squad you actually bought one!
+                    </p>
+                </div>
+
+                <!-- Fake Screenshot Receipt Card (Toggleable) -->
+                <div id="fakeReceiptBox" class="hidden bg-gradient-to-br from-zinc-900 to-black border-2 border-emerald-500/60 rounded-2xl p-4 text-left font-mono text-xs space-y-1.5 shadow-inner">
+                    <div class="flex justify-between items-center border-b border-zinc-800 pb-1.5">
+                        <span class="font-bold text-emerald-400">✓ SAMSUNG ORDER CONFIRMED</span>
+                        <span class="text-zinc-400">#MC-884920</span>
+                    </div>
+                    <div><strong>ITEM:</strong> Galaxy Fit3 Minecraft Edition (1x)</div>
+                    <div><strong>BUYER:</strong> <span id="receiptBuyerName">Player_One</span></div>
+                    <div><strong>PERK:</strong> Golden Fit3 Bedrock Cosmetic UNLOCKED</div>
+                    <div><strong>EST. DELIVERY:</strong> Tomorrow via Ender Pearl Express</div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    <button onclick="copyFakeOrderReceipt()" class="py-3 px-4 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-white font-bold text-xs flex items-center justify-center gap-2 border border-zinc-600 transition">
+                        <i class="fa-solid fa-camera-retro text-amber-400"></i>
+                        <span id="copyBtnText">Show & Copy Fake Receipt</span>
+                    </button>
+                    <button onclick="resetPrankModal()" class="py-3 px-4 rounded-xl bg-creeper-light hover:bg-green-400 text-black font-extrabold text-xs flex items-center justify-center gap-2 transition">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        <span>Reset Prank for Next Victim</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Interactive Watch Canvas & Web Audio Synthesizer Script -->
+    <script>
+        /**************************************************************
+         * 1. WEB AUDIO API SYNTHESIZER (No External Audio Files Needed)
+         **************************************************************/
+        let audioCtx = null;
+        let isMuted = false;
+
+        function getAudioContext() {
+            if (!audioCtx) {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (AudioContextClass) {
+                    audioCtx = new AudioContextClass();
+                }
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function toggleSoundMute() {
+            isMuted = !isMuted;
+            const icon = document.getElementById('audioIcon');
+            const btn = document.getElementById('audioToggleBtn');
+            if (isMuted) {
+                icon.className = 'fa-solid fa-volume-xmark text-zinc-500';
+                btn.querySelector('span').textContent = 'SFX OFF';
+            } else {
+                icon.className = 'fa-solid fa-volume-high text-creeper-light';
+                btn.querySelector('span').textContent = 'SFX ON';
+                playXpDing();
+            }
+        }
+
+        // Play authentic Minecraft XP orb chime
+        function playXpDing() {
+            if (isMuted) return;
+            const ctx = getAudioContext();
+            if (!ctx) return;
+
+            const now = ctx.currentTime;
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            // Randomize high pitch slightly like real Minecraft XP orbs
+            const baseFreq = 780 + Math.random() * 320;
+            osc.frequency.setValueAtTime(baseFreq, now);
+            osc.frequency.exponentialRampToValueAtTime(baseFreq * 1.45, now + 0.14);
+
+            gain.gain.setValueAtTime(0.15, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
+
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.16);
+        }
+
+        // Play Block Mining Thud sound
+        function playMineSound() {
+            if (isMuted) return;
+            const ctx = getAudioContext();
+            if (!ctx) return;
+
+            const now = ctx.currentTime;
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(190 + Math.random() * 60, now);
+            osc.frequency.exponentialRampToValueAtTime(65, now + 0.08);
+
+            gain.gain.setValueAtTime(0.12, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.09);
+        }
+
+        // Play Creeper Hiss + TNT Explosion using White Noise & Low-Frequency Boom
+        function playCreeperHissAndBoom(onBoomCallback) {
+            if (isMuted) {
+                setTimeout(() => { if (onBoomCallback) onBoomCallback(); }, 1200);
+                return;
+            }
+            const ctx = getAudioContext();
+            if (!ctx) {
+                if (onBoomCallback) onBoomCallback();
+                return;
+            }
+
+            const now = ctx.currentTime;
+            const hissDuration = 1.15;
+
+            // Create White Noise Buffer for Creeper Hiss ("Tssssss...")
+            const bufferSize = ctx.sampleRate * (hissDuration + 0.9);
+            const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                data[i] = Math.random() * 2 - 1;
+            }
+
+            const noise = ctx.createBufferSource();
+            noise.buffer = buffer;
+
+            // Bandpass filter for crisp Creeper fuse sizzle
+            const filter = ctx.createBiquadFilter();
+            filter.type = 'bandpass';
+            filter.frequency.setValueAtTime(1800, now);
+            filter.frequency.linearRampToValueAtTime(3400, now + hissDuration);
+
+            const hissGain = ctx.createGain();
+            hissGain.gain.setValueAtTime(0.02, now);
+            hissGain.gain.linearRampToValueAtTime(0.28, now + hissDuration);
+            hissGain.gain.setValueAtTime(0, now + hissDuration + 0.02);
+
+            noise.connect(filter);
+            filter.connect(hissGain);
+            hissGain.connect(ctx.destination);
+            noise.start(now);
+
+            // Schedule Explosion Boom at end of hiss
+            const boomTime = now + hissDuration;
+            const boomOsc = ctx.createOscillator();
+            const boomGain = ctx.createGain();
+            boomOsc.type = 'sawtooth';
+            boomOsc.frequency.setValueAtTime(130, boomTime);
+            boomOsc.frequency.exponentialRampToValueAtTime(24, boomTime + 0.65);
+
+            boomGain.gain.setValueAtTime(0.45, boomTime);
+            boomGain.gain.exponentialRampToValueAtTime(0.001, boomTime + 0.7);
+
+            boomOsc.connect(boomGain);
+            boomGain.connect(ctx.destination);
+            boomOsc.start(boomTime);
+            boomOsc.stop(boomTime + 0.7);
+
+            setTimeout(() => {
+                if (onBoomCallback) onBoomCallback();
+            }, hissDuration * 1000);
+        }
+
+        /**************************************************************
+         * 2. INTERACTIVE WATCH FACES ENGINE (HTML5 Canvas)
+         **************************************************************/
+        const watchCanvas = document.getElementById('watchCanvas');
+        const ctx = watchCanvas.getContext('2d');
+
+        let currentWatchFace = 0; // 0: Creeper Radar, 1: Redstone Pulse, 2: Daylight Cycle, 3: Diamond Pickaxe
+        let stepsCount = 8420;
+        let xpLevel = 28;
+        let heartRate = 112;
+        let frameTick = 0;
+
+        // Interactive face state variables
+        let creeperFlashTimer = 0;
+        let pickaxeSwingAngle = 0;
+        let blockDamage = 0;
+        let currentOreColor = '#38bdf8'; // Diamond cyan default
+
+        const watchFacesNames = [
+            "CREEPER RADAR",
+            "REDSTONE PULSE",
+            "DAYLIGHT CYCLE",
+            "PICKAXE MINER"
+        ];
+
+        function switchWatchFace(index) {
+            currentWatchFace = index;
+            playXpDing();
+
+            // Update UI button active states
+            for (let i = 0; i < 4; i++) {
+                const btn = document.getElementById(`faceBtn-${i}`);
+                if (i === index) {
+                    btn.classList.add('border-creeper-light', 'bg-creeper-DEFAULT/20');
+                    btn.classList.remove('border-zinc-700', 'bg-zinc-800/50');
+                } else {
+                    btn.classList.remove('border-creeper-light', 'bg-creeper-DEFAULT/20');
+                    btn.classList.add('border-zinc-700', 'bg-zinc-800/50');
+                }
+            }
+        }
+
+        function cycleNextWatchFace() {
+            switchWatchFace((currentWatchFace + 1) % 4);
+        }
+
+        function simulateStepBoost() {
+            stepsCount += 250;
+            xpLevel = Math.floor(stepsCount / 300);
+            heartRate = Math.min(175, heartRate + Math.floor(Math.random() * 8) + 2);
+            pickaxeSwingAngle = 1.2;
+            blockDamage = (blockDamage + 2) % 6;
+            playXpDing();
+            updateTelemetryUI();
+        }
+
+        function updateTelemetryUI() {
+            document.getElementById('liveBpmText').textContent = `${heartRate} BPM`;
+            document.getElementById('liveStepsText').textContent = `LVL ${xpLevel} (${stepsCount.toLocaleString()})`;
+            const apples = Math.floor(stepsCount / 600);
+            document.getElementById('liveGoldenApples').textContent = `${apples} Golden Apples`;
+        }
+
+        // Handle clicks directly on the live watch screen
+        watchCanvas.addEventListener('click', () => {
+            if (currentWatchFace === 0) {
+                // Creeper Radar: Flash and short hiss
+                creeperFlashTimer = 28;
+                playMineSound();
+            } else if (currentWatchFace === 1) {
+                // Redstone Pulse: Boost BPM & pulse speed
+                heartRate = heartRate >= 165 ? 98 : heartRate + 16;
+                updateTelemetryUI();
+                playXpDing();
+            } else if (currentWatchFace === 2) {
+                // Daylight Cycle: Advance time offset
+                frameTick += 180;
+                playXpDing();
+            } else if (currentWatchFace === 3) {
+                // Diamond Pickaxe: Swing pickaxe & mine block
+                pickaxeSwingAngle = 1.3;
+                blockDamage++;
+                stepsCount += 50;
+                if (blockDamage >= 5) {
+                    blockDamage = 0;
+                    xpLevel++;
+                    const ores = ['#38bdf8', '#fbbf24', '#ef4444', '#4ade80', '#a855f7'];
+                    currentOreColor = ores[Math.floor(Math.random() * ores.length)];
+                    playXpDing();
+                } else {
+                    playMineSound();
+                }
+                updateTelemetryUI();
+            }
+        });
+
+        // Helper: Draw a Pixel Heart icon at (x, y)
+        function drawPixelHeart(x, y, size, filled = true) {
+            ctx.fillStyle = filled ? '#ef4444' : '#3f3f46';
+            ctx.fillRect(x + size, y, size, size);
+            ctx.fillRect(x + size * 3, y, size, size);
+            ctx.fillRect(x, y + size, size * 5, size);
+            ctx.fillRect(x, y + size * 2, size * 5, size);
+            ctx.fillRect(x + size, y + size * 3, size * 3, size);
+            ctx.fillRect(x + size * 2, y + size * 4, size, size);
+        }
+
+        // Main Watch Render Loop
+        function renderWatchScreen() {
+            frameTick++;
+            const w = watchCanvas.width;
+            const h = watchCanvas.height;
+
+            // Clear watch OLED background
+            ctx.fillStyle = '#09090b';
+            ctx.fillRect(0, 0, w, h);
+
+            // Format Live System Time
+            const now = new Date();
+            const timeStr = now.toTimeString().slice(0, 5);
+            const secStr = String(now.getSeconds()).padStart(2, '0');
+
+            // Top Status Bar (Battery + Edition Icon)
+            ctx.fillStyle = '#71717a';
+            ctx.font = '10px Silkscreen, monospace';
+            ctx.textAlign = 'left';
+            ctx.fillText('5G • MC', 14, 22);
+            ctx.textAlign = 'right';
+            ctx.fillStyle = '#00ff55';
+            ctx.fillText('98% ■', w - 14, 22);
+
+            // Render Selected Watch Face
+            if (currentWatchFace === 0) {
+                renderCreeperRadarFace(w, h, timeStr, secStr);
+            } else if (currentWatchFace === 1) {
+                renderRedstonePulseFace(w, h, timeStr, secStr);
+            } else if (currentWatchFace === 2) {
+                renderDaylightCycleFace(w, h, timeStr, secStr);
+            } else if (currentWatchFace === 3) {
+                renderPickaxeMiningFace(w, h, timeStr, secStr);
+            }
+
+            // Bottom Interactive Prompt Pill
+            ctx.fillStyle = '#18181b';
+            ctx.fillRect(20, h - 30, w - 40, 20);
+            ctx.strokeStyle = '#27272a';
+            ctx.strokeRect(20, h - 30, w - 40, 20);
+            ctx.fillStyle = '#a1a1aa';
+            ctx.font = '9px Silkscreen, monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText(watchFacesNames[currentWatchFace], w / 2, h - 17);
+
+            requestAnimationFrame(renderWatchScreen);
+        }
+
+        // FACE 1: CREEPER RADAR (Heart rate in MC hearts, XP bar, flashing Creeper radar)
+        function renderCreeperRadarFace(w, h, timeStr, secStr) {
+            // Digital Time Header
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 42px VT323, monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText(timeStr, w / 2 - 10, 62);
+            ctx.font = '20px VT323, monospace';
+            ctx.fillStyle = '#00ff55';
+            ctx.fillText(secStr, w / 2 + 44, 62);
+
+            // Minecraft Hearts Row (Heart Rate)
+            const startX = 24;
+            for (let i = 0; i < 6; i++) {
+                const pulseOffset = (frameTick % 30 < 10 && i === 5) ? -2 : 0;
+                drawPixelHeart(startX + i * 24, 74 + pulseOffset, 3.2, i < 5);
+            }
+            ctx.fillStyle = '#f87171';
+            ctx.font = '16px VT323, monospace';
+            ctx.textAlign = 'right';
+            ctx.fillText(`${heartRate} BPM`, w - 18, 86);
+
+            // Creeper Radar Box in Center
+            const cx = w / 2;
+            const cy = 175;
+            const r = 60;
+
+            // Flash white if tapped!
+            if (creeperFlashTimer > 0) {
+                creeperFlashTimer--;
+                if (creeperFlashTimer % 4 < 2) {
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(15, 102, w - 30, 146);
+                }
+            }
+
+            // Radar Rings
+            ctx.strokeStyle = '#166534';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.arc(cx, cy, r, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(cx, cy, r * 0.6, 0, Math.PI * 2);
+            ctx.stroke();
+
+            // Pixel Creeper Head inside Radar
+            const headSize = 44;
+            const hx = cx - headSize / 2;
+            const hy = cy - headSize / 2;
+            ctx.fillStyle = (creeperFlashTimer > 0 && creeperFlashTimer % 2 === 0) ? '#ffffff' : '#468b32';
+            ctx.fillRect(hx, hy, headSize, headSize);
+            ctx.fillStyle = '#09090b';
+            // Eyes
+            ctx.fillRect(hx + 6, hy + 10, 10, 10);
+            ctx.fillRect(hx + 28, hy + 10, 10, 10);
+            // Nose & Mouth
+            ctx.fillRect(hx + 16, hy + 20, 12, 16);
+            ctx.fillRect(hx + 11, hy + 26, 5, 14);
+            ctx.fillRect(hx + 28, hy + 26, 5, 14);
+
+            // Sweeping Radar Beam
+            const angle = (frameTick * 0.05) % (Math.PI * 2);
+            ctx.strokeStyle = '#00ff55';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(cx + Math.cos(angle) * r, cy + Math.sin(angle) * r);
+            ctx.stroke();
+
+            // Redstone Blip on Radar
+            const blipX = cx + Math.cos(frameTick * 0.02) * 38;
+            const blipY = cy + Math.sin(frameTick * 0.02) * 38;
+            ctx.fillStyle = '#00ff55';
+            ctx.fillRect(blipX - 3, blipY - 3, 6, 6);
+
+            // XP Level & Step Progress Bar at Bottom
+            ctx.fillStyle = '#00ff55';
+            ctx.font = 'bold 20px VT323, monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText(`XP LVL ${xpLevel}`, w / 2, 268);
+
+            // Segmented Minecraft XP Bar
+            const barX = 20;
+            const barY = 276;
+            const barW = w - 40;
+            const barH = 12;
+            ctx.fillStyle = '#18181b';
+            ctx.fillRect(barX, barY, barW, barH);
+            const fillRatio = (stepsCount % 1000) / 1000;
+            ctx.fillStyle = '#00ff55';
+            ctx.fillRect(barX, barY, Math.max(25, barW * fillRatio), barH);
+            ctx.strokeStyle = '#09090b';
+            for (let s = 1; s < 10; s++) {
+                ctx.beginPath();
+                ctx.moveTo(barX + (barW / 10) * s, barY);
+                ctx.lineTo(barX + (barW / 10) * s, barY + barH);
+                ctx.stroke();
+            }
+            ctx.fillStyle = '#d4d4d8';
+            ctx.font = '14px VT323, monospace';
+            ctx.fillText(`${stepsCount.toLocaleString()} STEPS (TAP TO HISS)`, w / 2, 306);
+        }
+
+        // FACE 2: REDSTONE PULSE (Glowing redstone circuit lines that speed up with BPM)
+        function renderRedstonePulseFace(w, h, timeStr, secStr) {
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 44px VT323, monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText(timeStr, w / 2, 66);
+
+            // Animated Redstone Circuit Traces
+            const speed = heartRate / 45;
+            const pulsePos = (frameTick * speed) % w;
+
+            ctx.strokeStyle = '#450a0a';
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            ctx.moveTo(15, 165);
+            ctx.lineTo(65, 165);
+            ctx.lineTo(80, 125);
+            ctx.lineTo(98, 210);
+            ctx.lineTo(118, 145);
+            ctx.lineTo(135, 180);
+            ctx.lineTo(150, 165);
+            ctx.lineTo(w - 15, 165);
+            ctx.stroke();
+
+            // Glowing Active Redstone Dust Trace
+            ctx.strokeStyle = '#ef4444';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            // Traveling Redstone Repeater Spark
+            ctx.fillStyle = '#fca5a5';
+            ctx.fillRect(15 + (pulsePos % (w - 38)), 159, 12, 12);
+
+            // BPM Readout Box
+            ctx.fillStyle = '#18181b';
+            ctx.fillRect(28, 228, w - 56, 66);
+            ctx.strokeStyle = '#ef4444';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(28, 228, w - 56, 66);
+
+            ctx.fillStyle = '#ef4444';
+            ctx.font = 'bold 28px VT323, monospace';
+            ctx.fillText(`♥ ${heartRate} BPM`, w / 2, 258);
+            ctx.fillStyle = '#a1a1aa';
+            ctx.font = '14px VT323, monospace';
+            ctx.fillText('REDSTONE POWER: 15/15', w / 2, 282);
+        }
+
+        // FACE 3: DAYLIGHT CYCLE (Blocky Sun & Moon orbit with live system time)
+        function renderDaylightCycleFace(w, h, timeStr, secStr) {
+            const orbitAngle = (frameTick * 0.015) % (Math.PI * 2);
+            const isDay = Math.sin(orbitAngle) < 0;
+
+            // Sky Window Box
+            const skyX = 20, skyY = 40, skyW = w - 40, skyH = 155;
+            ctx.fillStyle = isDay ? '#0284c7' : '#0f172a';
+            ctx.fillRect(skyX, skyY, skyW, skyH);
+
+            const centerX = w / 2;
+            const centerY = skyY + skyH - 20;
+            const radius = 58;
+
+            // Blocky Pixel Sun
+            const sunX = centerX + Math.cos(orbitAngle) * radius;
+            const sunY = centerY + Math.sin(orbitAngle) * radius;
+            if (sunY < skyY + skyH) {
+                ctx.fillStyle = '#facc15';
+                ctx.fillRect(sunX - 14, sunY - 14, 28, 28);
+                ctx.fillStyle = '#fef08a';
+                ctx.fillRect(sunX - 8, sunY - 8, 16, 16);
+            }
+
+            // Blocky Pixel Moon (Opposite side)
+            const moonX = centerX + Math.cos(orbitAngle + Math.PI) * radius;
+            const moonY = centerY + Math.sin(orbitAngle + Math.PI) * radius;
+            if (moonY < skyY + skyH) {
+                ctx.fillStyle = '#e2e8f0';
+                ctx.fillRect(moonX - 12, moonY - 12, 24, 24);
+                ctx.fillStyle = '#94a3b8';
+                ctx.fillRect(moonX - 6, moonY - 6, 8, 8);
+            }
+
+            // Grass Block Horizon Strip
+            ctx.fillStyle = '#468b32';
+            ctx.fillRect(skyX, skyY + skyH - 18, skyW, 6);
+            ctx.fillStyle = '#78350f';
+            ctx.fillRect(skyX, skyY + skyH - 12, skyW, 12);
+
+            // Live Clock & Weather Info
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 42px VT323, monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText(timeStr, w / 2, 238);
+
+            ctx.fillStyle = isDay ? '#fde047' : '#c084fc';
+            ctx.font = '16px VT323, monospace';
+            ctx.fillText(isDay ? '☀ OVERWORLD DAY (24°C)' : '☾ NIGHT - PHANTOM ALERT', w / 2, 265);
+            ctx.fillStyle = '#a1a1aa';
+            ctx.fillText('TAP TO TIME SKIP +1000 TICKS', w / 2, 292);
+        }
+
+        // FACE 4: DIAMOND PICKAXE MINING (Animated pickaxe mining ore blocks with steps)
+        function renderPickaxeMiningFace(w, h, timeStr, secStr) {
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 34px VT323, monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText(timeStr, w / 2, 54);
+
+            // Draw Ore Block on Right Side
+            const bx = 122, by = 132, bSize = 66;
+            ctx.fillStyle = '#334155';
+            ctx.fillRect(bx, by, bSize, bSize);
+            ctx.strokeStyle = '#1e293b';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(bx, by, bSize, bSize);
+
+            // Glowing Ore Pixels inside Block
+            ctx.fillStyle = currentOreColor;
+            ctx.fillRect(bx + 12, by + 12, 12, 12);
+            ctx.fillRect(bx + 38, by + 18, 10, 10);
+            ctx.fillRect(bx + 20, by + 40, 14, 12);
+            ctx.fillRect(bx + 42, by + 44, 10, 10);
+
+            // Block Crack Stages
+            if (blockDamage > 0) {
+                ctx.strokeStyle = '#09090b';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                for (let c = 0; c < blockDamage; c++) {
+                    ctx.moveTo(bx + 33, by + 33);
+                    ctx.lineTo(bx + 10 + c * 12, by + 8 + (c % 2) * 48);
+                }
+                ctx.stroke();
+            }
+
+            // Animated Pixel Diamond Pickaxe
+            if (pickaxeSwingAngle > 0) {
+                pickaxeSwingAngle = Math.max(0, pickaxeSwingAngle - 0.12);
+            } else {
+                // Gentle idle mining swing
+                pickaxeSwingAngle = Math.abs(Math.sin(frameTick * 0.08)) * 0.45;
+            }
+
+            ctx.save();
+            ctx.translate(72, 178);
+            ctx.rotate(pickaxeSwingAngle);
+            // Wooden Stick Handle
+            ctx.fillStyle = '#92400e';
+            for (let i = 0; i < 6; i++) {
+                ctx.fillRect(i * 6 - 18, -i * 6 + 6, 7, 7);
+            }
+            // Diamond Pickaxe Head
+            ctx.fillStyle = '#38bdf8';
+            ctx.fillRect(6, -34, 24, 8);
+            ctx.fillRect(22, -26, 8, 22);
+            ctx.restore();
+
+            // Step Counter & Blocks Mined Readout
+            ctx.fillStyle = '#38bdf8';
+            ctx.font = 'bold 22px VT323, monospace';
+            ctx.fillText(`STEPS: ${stepsCount.toLocaleString()}`, w / 2, 245);
+            ctx.fillStyle = '#4ade80';
+            ctx.font = '16px VT323, monospace';
+            ctx.fillText(`BLOCKS MINED: ${Math.floor(stepsCount / 50)}`, w / 2, 272);
+            ctx.fillStyle = '#a1a1aa';
+            ctx.font = '14px VT323, monospace';
+            ctx.fillText('TAP SCREEN TO MINE ORE!', w / 2, 298);
+        }
+
+        /**************************************************************
+         * 3. COLOR / EDITION SELECTOR
+         **************************************************************/
+        const editionStyles = {
+            creeper: {
+                strap: 'strap-creeper',
+                bezel: 'bezel-creeper',
+                glow: 'bg-creeper-light/20',
+                swatchId: 'swatch-creeper'
+            },
+            diamond: {
+                strap: 'strap-diamond',
+                bezel: 'bezel-diamond',
+                glow: 'bg-sky-400/25',
+                swatchId: 'swatch-diamond'
+            },
+            netherite: {
+                strap: 'strap-netherite',
+                bezel: 'bezel-netherite',
+                glow: 'bg-purple-500/20',
+                swatchId: 'swatch-netherite'
+            },
+            tnt: {
+                strap: 'strap-tnt',
+                bezel: 'bezel-tnt',
+                glow: 'bg-red-500/25',
+                swatchId: 'swatch-tnt'
+            }
+        };
+
+        function selectEdition(editionKey, displayTitle) {
+            playMineSound();
+            const topStrap = document.getElementById('topStrap');
+            const bottomStrap = document.getElementById('bottomStrap');
+            const watchBezel = document.getElementById('watchBezel');
+            const watchGlow = document.getElementById('watchGlow');
+            const modalMiniSwatch = document.getElementById('modalMiniSwatch');
+
+            // Remove old classes
+            Object.values(editionStyles).forEach(st => {
+                topStrap.classList.remove(st.strap);
+                bottomStrap.classList.remove(st.strap);
+                watchBezel.classList.remove(st.bezel);
+                watchGlow.classList.remove(st.glow);
+                modalMiniSwatch.classList.remove(st.strap);
+                const sw = document.getElementById(st.swatchId);
+                sw.classList.remove('border-white', 'ring-2', 'ring-creeper-light');
+                sw.classList.add('border-zinc-700');
+            });
+
+            // Apply selected edition classes
+            const chosen = editionStyles[editionKey];
+            topStrap.classList.add(chosen.strap);
+            bottomStrap.classList.add(chosen.strap);
+            watchBezel.classList.add(chosen.bezel);
+            watchGlow.classList.add(chosen.glow);
+            modalMiniSwatch.classList.add(chosen.strap);
+
+            const activeSwatch = document.getElementById(chosen.swatchId);
+            activeSwatch.classList.remove('border-zinc-700');
+            activeSwatch.classList.add('border-white', 'ring-2', 'ring-creeper-light');
+
+            document.getElementById('selectedColorName').textContent = displayTitle;
+            document.getElementById('modalEditionLabel').textContent = `${displayTitle} + Golden Fit3 Code`;
+        }
+
+        /**************************************************************
+         * 4. PRANK MODAL, EXPLOSION & PIXEL CONFETTI ENGINE
+         **************************************************************/
+        const checkoutModal = document.getElementById('checkoutModal');
+        const checkoutStepForm = document.getElementById('checkoutStepForm');
+        const checkoutStepPrank = document.getElementById('checkoutStepPrank');
+        const creeperFuseBox = document.getElementById('creeperFuseBox');
+        const fuseProgressBar = document.getElementById('fuseProgressBar');
+        const confettiCanvas = document.getElementById('confettiCanvas');
+        const confettiCtx = confettiCanvas.getContext('2d');
+        let confettiParticles = [];
+        let confettiAnimId = null;
+
+        function openCheckoutModal() {
+            playXpDing();
+            checkoutModal.classList.remove('hidden');
+            resetPrankModal();
+        }
+
+        function closeCheckoutModal() {
+            checkoutModal.classList.add('hidden');
+            if (confettiAnimId) cancelAnimationFrame(confettiAnimId);
+        }
+
+        function startCreeperPrankSequence() {
+            const btn = document.getElementById('completeOrderBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> <span>IGNITING REDSTONE...</span>';
+            creeperFuseBox.classList.remove('hidden');
+
+            // Animate Fuse Bar
+            let progress = 0;
+            const fuseInterval = setInterval(() => {
+                progress += 10;
+                fuseProgressBar.style.width = `${Math.min(100, progress)}%`;
+                if (progress >= 100) clearInterval(fuseInterval);
+            }, 105);
+
+            // Play Creeper Hiss & Trigger Explosion Reveal
+            playCreeperHissAndBoom(() => {
+                revealPrankScreen();
+            });
+        }
+
+        function revealPrankScreen() {
+            const victimName = document.getElementById('checkoutUserInput').value.trim() || 'Player_One';
+            document.getElementById('prankedVictimName').textContent = victimName;
+            document.getElementById('receiptBuyerName').textContent = victimName;
+
+            // Shake entire page & modal
+            document.body.classList.add('shake-active');
+            setTimeout(() => document.body.classList.remove('shake-active'), 700);
+
+            checkoutStepForm.classList.add('hidden');
+            checkoutStepPrank.classList.remove('hidden');
+
+            // Launch Pixel Confetti / TNT Particles
+            launchPixelConfetti();
+        }
+
+        function resetPrankModal() {
+            checkoutStepForm.classList.remove('hidden');
+            checkoutStepPrank.classList.add('hidden');
+            creeperFuseBox.classList.add('hidden');
+            fuseProgressBar.style.width = '0%';
+            document.getElementById('fakeReceiptBox').classList.add('hidden');
+            const btn = document.getElementById('completeOrderBtn');
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fa-solid fa-bolt"></i> <span>Complete Order & Claim Bedrock Code</span>';
+            confettiCanvas.classList.add('hidden');
+            if (confettiAnimId) cancelAnimationFrame(confettiAnimId);
+        }
+
+        function launchPixelConfetti() {
+            confettiCanvas.classList.remove('hidden');
+            confettiCanvas.width = confettiCanvas.offsetWidth || 500;
+            confettiCanvas.height = confettiCanvas.offsetHeight || 520;
+
+            const colors = ['#00ff55', '#468b32', '#ef4444', '#ffffff', '#38bdf8', '#facc15'];
+            confettiParticles = [];
+            for (let i = 0; i < 85; i++) {
+                confettiParticles.push({
+                    x: confettiCanvas.width / 2,
+                    y: confettiCanvas.height / 3,
+                    vx: (Math.random() - 0.5) * 14,
+                    vy: (Math.random() - 0.7) * 14,
+                    size: Math.floor(Math.random() * 10) + 6,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    gravity: 0.28
+                });
+            }
+
+            function animateConfetti() {
+                confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+                let active = false;
+                confettiParticles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += p.gravity;
+                    if (p.y < confettiCanvas.height + 20) active = true;
+                    confettiCtx.fillStyle = p.color;
+                    confettiCtx.fillRect(p.x, p.y, p.size, p.size);
+                });
+                if (active) {
+                    confettiAnimId = requestAnimationFrame(animateConfetti);
+                }
+            }
+            animateConfetti();
+        }
+
+        // Copy Fake Order Receipt for Screenshot Pranks
+        function copyFakeOrderReceipt() {
+            const receiptBox = document.getElementById('fakeReceiptBox');
+            receiptBox.classList.remove('hidden');
+            const buyer = document.getElementById('receiptBuyerName').textContent;
+            const receiptText = `✅ SAMSUNG DIRECT ORDER CONFIRMED (#MC-884920)\nItem: Samsung Galaxy Fit3 Minecraft Edition (1x)\nReserved For: ${buyer}\nBonus Included: Golden Galaxy Fit3 Bedrock Wrist Cosmetic Code\nDelivery: Express Ender Pearl Shipping`;
+
+            const tempArea = document.createElement('textarea');
+            tempArea.value = receiptText;
+            document.body.appendChild(tempArea);
+            tempArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempArea);
+
+            const copyBtnText = document.getElementById('copyBtnText');
+            copyBtnText.textContent = 'Receipt Copied to Clipboard!';
+            playXpDing();
+            setTimeout(() => {
+                copyBtnText.textContent = 'Show & Copy Fake Receipt';
+            }, 2500);
+        }
+
+        /**************************************************************
+         * 5. PRANKSTER SECRET FOOTER SETTINGS
+         **************************************************************/
+        function togglePrankSettings() {
+            const panel = document.getElementById('prankSettingsPanel');
+            panel.classList.toggle('hidden');
+            if (!panel.classList.contains('hidden')) {
+                panel.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function applyPrankSettings() {
+            const nameInput = document.getElementById('victimNameInput').value.trim() || 'Player_One';
+            const promoPrice = document.getElementById('promoPriceSelect').value;
+
+            document.getElementById('vipBannerText').innerHTML = `Early Access Invite Reserved Exclusively for <span class="text-creeper-light underline decoration-dotted font-bold">${nameInput}</span>`;
+            document.getElementById('checkoutUserInput').value = nameInput;
+            document.getElementById('modalPriceTag').textContent = promoPrice.split(' ')[0];
+            playXpDing();
+        }
+
+        function triggerImmediatePrank() {
+            openCheckoutModal();
+            revealPrankScreen();
+            playCreeperHissAndBoom();
+        }
+
+        // Start Watch Canvas Animation Loop on Load
+        window.onload = function () {
+            renderWatchScreen();
+        };
+    </script>
+</body>
+</html>
